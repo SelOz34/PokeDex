@@ -34,6 +34,13 @@
     padding: 32px 16px;
 }
 
+.pokemon-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 24px;
+}
+
 .logo {
     display: flex;
     align-items: center;

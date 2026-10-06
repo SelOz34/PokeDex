@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokodex</title>
+    <title>Pokodéx</title>
     <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
     <link rel="stylesheet" href="./style/standard.css">
     <link rel="stylesheet" href="./style/assets.css">
@@ -13,25 +13,25 @@
     <script src="./script.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <header class="header">
           <div class="header-inner">
-            <a class="logo" href="./index.html" aria-label="Pokedex home">
+                <a class="logo" href="./index.html" aria-label="Pokédex home">
                 <img src="./assets/icons/favicon.svg" alt="" width="36" height="36">
-                <h1>Pokedex</h1>
-            </a>
-            <form class="search-form" role="search">
-                <input id="searchInput" type="search" placeholder="Search Pokemon..." autocomplete="off"
-                     aria-label="Search Pokemon by name" data-id="search-input">
-                <button id="searchButton" type="submit" class="search-button" disabled
-                    aria-label="Start search" data-id="search-button">Search</button>
-            </form>
-        </div>
+                <h1>Pokédex</h1>
+                </a>
+                <form class="search-form" role="search">
+                    <input id="searchInput" type="search" placeholder="Search Pokémon..." autocomplete="off"
+                        aria-label="Search Pokémon by name" data-id="search-input">
+                    <button id="searchButton" type="submit" class="search-button" disabled
+                        aria-label="Start search" data-id="search-button">Search</button>
+                </form>
+            </div>
         <p id="searchHint" class="search-hint">Enter at least 3 letters to search.</p>  
     </header>
 
     <main class="content" data-id="content">
-            <div id="statusMessage" class="status-message"></div>
+        <div id="statusMessage" class="status-message"></div>
         <ul id="pokemonList" class="pokemon-list"></ul>
         <div class="list-actions">
             <button id="loadMoreButton" class="primary-button" 
@@ -47,7 +47,7 @@
 
     </div>
 
-    <dialog id="pokemonDialog" class="pokemon-dialog" data-id="dialog" aria-label="Pokemon details">
+    <dialog id="pokemonDialog" class="pokemon-dialog" data-id="dialog" aria-label="Pokémon details">
 
     </dialog>
 </body>
