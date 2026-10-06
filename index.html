@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +13,42 @@
     <script src="./script.js"></script>
 </head>
 
-<body onload="init()">
+<body>
     <header class="header">
-            
+          <div class="header-inner">
+            <a class="logo" href="./index.html" aria-label="Pokedex home">
+                <img src="./assets/icons/favicon.svg" alt="" width="36" height="36">
+                <h1>Pokedex</h1>
+            </a>
+            <form class="search-form" role="search">
+                <input id="searchInput" type="search" placeholder="Search Pokemon..." autocomplete="off"
+                     aria-label="Search Pokemon by name" data-id="search-input">
+                <button id="searchButton" type="submit" class="search-button" disabled
+                    aria-label="Start search" data-id="search-button">Search</button>
+            </form>
+        </div>
+        <p id="searchHint" class="search-hint">Enter at least 3 letters to search.</p>  
     </header>
 
-    <main class="content">
-
+    <main class="content" data-id="content">
+            <div id="statusMessage" class="status-message"></div>
+        <ul id="pokemonList" class="pokemon-list"></ul>
+        <div class="list-actions">
+            <button id="loadMoreButton" class="primary-button" 
+                aria-label="Load more Pokémon" data-id="load-more-button">Load more</button>
+        </div>
     </main>
 
-    <footer>
-
+    <footer class="footer">
+        <p>Data provided by <a href="https://pokeapi.co" target="_blank" rel="noopener">PokéAPI</a></p>
     </footer>
+
+    <div id="loadingScreen" class="loading-screen d-none">
+
+    </div>
+
+    <dialog id="pokemonDialog" class="pokemon-dialog" data-id="dialog" aria-label="Pokemon details">
+
+    </dialog>
 </body>
 </html>

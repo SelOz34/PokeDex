@@ -1,0 +1,119 @@
+:root {
+    --color-surface: #10232d;
+    --color-surface-light: #17323f;
+    --color-border: #23414f;
+    --color-accent: #4fd1c5;
+    --color-highlight: #e8442c;
+    --max-content-width: 1440px;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 12px 16px 4px;
+}
+
+.header-inner {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.content {
+    flex: 1;
+    width: 100%;
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 32px 16px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.search-form {
+    display: flex;
+    gap: 8px;
+    flex: 0 1 380px;
+    min-width: 0;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background-color: #fff;
+    color: #0b1a22;
+    font-size: 16px;
+}
+
+.search-button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: var(--color-accent);
+    color: #0b1a22;
+    font-weight: 600;
+}
+
+.search-hint {
+    max-width: var(--max-content-width);
+    margin: 4px auto 0;
+    font-size: 12px;
+    text-align: right;
+    color: #8aa3ae;
+    min-height: 16px;
+}
+
+.list-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.primary-button {
+    padding: 12px 32px;
+    border-radius: 999px;
+    background-color: var(--color-highlight);
+    color: #fff;
+    font-weight: 600;
+    transition: filter 150ms ease;
+}
+
+.primary-button:not(:disabled):hover {
+    filter: brightness(1.15);
+}
+
+.footer {
+    padding: 20px 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #8aa3ae;
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 600px) {
+    .header-inner {
+        justify-content: center;
+    }
+
+    .search-form {
+        flex-basis: 100%;
+    }
+}
