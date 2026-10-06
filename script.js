@@ -4,23 +4,32 @@ const PAGE_SIZE = 20;
 let pokemonCache = {};
 let loadedPokemon = [];
 let nextOffset = 0;
+let isLoading = false;
 
 async function init() {
     await loadPokemon();
 }
 
 async function loadPokemon() {
+    if (isLoading) return;
+    setLoading(true);
     try {
-        const url = `${BASE_URL}pokemon?limit=${PAGE_SIZE}&offset=${nextOffset}`;
-        const pageData = await fetchJson(url);
-        const names = pageData.results.map((entry) => entry.name);
-        const newPokemon = await getPokemonDetails(names);
+        const newPokemon = await fetchNextPokemonPage();
         loadedPokemon.push(...newPokemon);
         nextOffset += PAGE_SIZE;
         renderPokemonList();
     } catch (error) {
-        console.error("Loading Pokémon failed:", error);
+        showStatusMessage(getErrorTemplate());
+    } finally {
+        setLoading(false);
     }
+}
+
+async function fetchNextPokemonPage() {
+    const url = `${BASE_URL}pokemon?limit=${PAGE_SIZE}&offset=${nextOffset}`;
+    const pageData = await fetchJson(url);
+    const names = pageData.results.map((entry) => entry.name);
+    return getPokemonDetails(names);
 }
 
 async function fetchJson(url) {
@@ -52,13 +61,22 @@ function simplifyPokemon(data) {
     };
 }
 
-
 function renderPokemonList() {
+    showStatusMessage("");
     const listElement = document.getElementById("pokemonList");
     listElement.innerHTML = loadedPokemon.map(getPokemonCardTemplate).join("");
+}
+
+function setLoading(loading) {
+    isLoading = loading;
+    document.getElementById("loadingScreen").classList.toggle("d-none", !loading);
+    document.getElementById("loadMoreButton").disabled = loading;
 }
 
 function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
+function showStatusMessage(html) {
+    document.getElementById("statusMessage").innerHTML = html;
+}

@@ -34,7 +34,7 @@
         <div id="statusMessage" class="status-message"></div>
         <ul id="pokemonList" class="pokemon-list"></ul>
         <div class="list-actions">
-            <button id="loadMoreButton" class="primary-button" 
+            <button id="loadMoreButton" class="primary-button" onclick="loadPokemon()"
                 aria-label="Load more Pokémon" data-id="load-more-button">Load more</button>
         </div>
     </main>
@@ -43,8 +43,9 @@
         <p>Data provided by <a href="https://pokeapi.co" target="_blank" rel="noopener">PokéAPI</a></p>
     </footer>
 
-    <div id="loadingScreen" class="loading-screen d-none">
-
+    <div id="loadingScreen" class="loading-screen d-none" aria-live="polite">
+        <div class="spinner"></div>
+        <p>Loading...</p>
     </div>
 
     <dialog id="pokemonDialog" class="pokemon-dialog" data-id="dialog" aria-label="Pokémon details">

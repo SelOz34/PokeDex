@@ -15,3 +15,7 @@ function getPokemonCardTemplate(pokemon) {
 function getTypeBadgesTemplate(types) {
     return types.map((type) => `<span class="type-badge type-bg-${type}">${capitalize(type)}</span>`).join("");
 }
+
+function getErrorTemplate() {
+    return `<p class="status-text">Something went wrong while loading data. Please try again.</p>`;
+}
