@@ -104,8 +104,6 @@ function showStatusMessage(html) {
     document.getElementById("statusMessage").innerHTML = html;
 }
 
-/* ---------- Dialog ---------- */
-
 function openDialog(index) {
     currentIndex = index;
     activeTab = "main";
@@ -135,8 +133,6 @@ function handleDialogClick(event) {
         closeDialog();
     }
 }
-
-/* ---------- Tabs ---------- */
 
 function showTab(tabName) {
     activeTab = tabName;
