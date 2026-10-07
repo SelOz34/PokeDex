@@ -347,6 +347,51 @@
     background-color: var(--color-highlight);
 }
 
+.evo-chain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.evo-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.evo-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+}
+
+.evo-entry img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.evo-arrow {
+    font-size: 28px;
+    color: #8aa3ae;
+}
+
+.tab-loading {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.spinner.small {
+    width: 32px;
+    height: 32px;
+    border-width: 4px;
+}
+
 @media (max-width: 600px) {
     .header-inner {
         justify-content: center;

@@ -49,7 +49,8 @@ function getTabNavigationTemplate() {
         <div class="tab-navigation">
             <button class="tab-button" data-tab="main" onclick="showTab('main')" aria-label="Show main info">main</button>
             <button class="tab-button" data-tab="stats" onclick="showTab('stats')" aria-label="Show stats">stats</button>
-        </div>`;
+            <button class="tab-button" data-tab="evolution" onclick="showTab('evolution')" aria-label="Show evolution chain">evo chain</button>
+            </div>`;
 }
 
 function getMainTabTemplate(pokemon) {
@@ -73,4 +74,22 @@ function getStatRowTemplate(stat) {
             <span class="stat-value">${stat.value}</span>
             <div class="stat-bar"><div class="stat-bar-fill" style="width: ${getStatPercent(stat.value)}%"></div></div>
         </div>`;
+}
+
+function getEvolutionTabTemplate(stages) {
+    const stageHtml = stages.map((stage) => `<div class="evo-stage">${stage.map(getEvolutionEntryTemplate).join("")}</div>`);
+    return `<div class="evo-chain">${stageHtml.join('<span class="evo-arrow" aria-hidden="true">&raquo;</span>')}</div>`;
+}
+
+function getEvolutionEntryTemplate(entry) {
+    const name = formatName(entry.name);
+    return `
+        <figure class="evo-entry">
+            <img src="${entry.image}" alt="${name}" loading="lazy">
+            <figcaption>${name}</figcaption>
+        </figure>`;
+}
+
+function getTabLoadingTemplate() {
+    return `<div class="tab-loading"><div class="spinner small"></div></div>`;
 }

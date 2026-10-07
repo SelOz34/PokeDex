@@ -3,6 +3,8 @@ const PAGE_SIZE = 20;
 const MAX_STAT_VALUE = 255;
 
 let pokemonCache = {};
+let speciesCache = {};
+let evolutionCache = {};
 let loadedPokemon = [];
 let nextOffset = 0;
 let currentIndex = 0;
@@ -148,4 +150,59 @@ function setTabContent(html) {
 
 function getStatPercent(value) {
     return Math.min(100, Math.round((value / MAX_STAT_VALUE) * 100));
+}
+
+async function getEvolutionStages(speciesUrl) {
+    const chainUrl = await getEvolutionChainUrl(speciesUrl);
+    if (!evolutionCache[chainUrl]) {
+        const evolutionData = await fetchJson(chainUrl);
+        evolutionCache[chainUrl] = collectEvolutionStages(evolutionData.chain);
+    }
+    return evolutionCache[chainUrl];
+}
+
+async function getEvolutionChainUrl(speciesUrl) {
+    if (!speciesCache[speciesUrl]) {
+        const species = await fetchJson(speciesUrl);
+        speciesCache[speciesUrl] = species.evolution_chain.url;
+    }
+    return speciesCache[speciesUrl];
+}
+
+function collectEvolutionStages(chainLink, depth = 0, stages = []) {
+    stages[depth] = stages[depth] || [];
+    stages[depth].push(createEvolutionEntry(chainLink.species));
+    chainLink.evolves_to.forEach((next) => collectEvolutionStages(next, depth + 1, stages));
+    return stages;
+}
+
+function createEvolutionEntry(species) {
+    const id = species.url.split("/").filter(Boolean).pop();
+    const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+    return { name: species.name, image: image };
+}
+
+async function showEvolutionTab(pokemon) {
+    setTabContent(getTabLoadingTemplate());
+    try {
+        const stages = await getEvolutionStages(pokemon.speciesUrl);
+        if (isStillShowing(pokemon)) {
+            setTabContent(getEvolutionTabTemplate(stages));
+        }
+    } catch (error) {
+        if (isStillShowing(pokemon)) setTabContent(getErrorTemplate());
+    }
+}
+
+function isStillShowing(pokemon) {
+    return loadedPokemon[currentIndex] === pokemon && activeTab === "evolution";
+}
+
+function showTab(tabName) {
+    activeTab = tabName;
+    markActiveTab(tabName);
+    const pokemon = loadedPokemon[currentIndex];
+    if (tabName === "main") setTabContent(getMainTabTemplate(pokemon));
+    if (tabName === "stats") setTabContent(getStatsTabTemplate(pokemon.stats));
+    if (tabName === "evolution") showEvolutionTab(pokemon);
 }
