@@ -29,6 +29,7 @@ function getDialogTemplate(pokemon) {
                 <img src="${pokemon.image}" alt="${name}" data-id="dialog-image">
             </div>
             <div class="type-list">${getTypeBadgesTemplate(pokemon.types)}</div>
+            ${getTabNavigationTemplate()}
             <div id="tabContent" class="tab-content"></div>
         </div>`;
 }
@@ -40,5 +41,36 @@ function getDialogHeaderTemplate(id, name) {
             <span>#${id}</span>
             <h2>${name}</h2>
             <button class="close-button" onclick="closeDialog()" aria-label="Close details" data-id="close-dialog-button">&#10005;</button>
+        </div>`;
+}
+
+function getTabNavigationTemplate() {
+    return `
+        <div class="tab-navigation">
+            <button class="tab-button" data-tab="main" onclick="showTab('main')" aria-label="Show main info">main</button>
+            <button class="tab-button" data-tab="stats" onclick="showTab('stats')" aria-label="Show stats">stats</button>
+        </div>`;
+}
+
+function getMainTabTemplate(pokemon) {
+    return `
+        <table class="info-table">
+            <tr><th>Height</th><td>${pokemon.height} m</td></tr>
+            <tr><th>Weight</th><td>${pokemon.weight} kg</td></tr>
+            <tr><th>Base experience</th><td>${pokemon.baseExperience}</td></tr>
+            <tr><th>Abilities</th><td>${pokemon.abilities.map(formatName).join(", ")}</td></tr>
+        </table>`;
+}
+
+function getStatsTabTemplate(stats) {
+    return `<div class="stats-list">${stats.map(getStatRowTemplate).join("")}</div>`;
+}
+
+function getStatRowTemplate(stat) {
+    return `
+        <div class="stat-row">
+            <span class="stat-name">${stat.name}</span>
+            <span class="stat-value">${stat.value}</span>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width: ${getStatPercent(stat.value)}%"></div></div>
         </div>`;
 }
