@@ -20,9 +20,9 @@
                 <img src="./assets/icons/favicon.svg" alt="" width="36" height="36">
                 <h1>Pokédex</h1>
                 </a>
-                <form class="search-form" role="search">
+                <form class="search-form" onsubmit="searchPokemon(event)" role="search">
                     <input id="searchInput" type="search" placeholder="Search Pokémon..." autocomplete="off"
-                        aria-label="Search Pokémon by name" data-id="search-input">
+                    oninput="handleSearchInput()" aria-label="Search Pokémon by name" data-id="search-input">
                     <button id="searchButton" type="submit" class="search-button" disabled
                         aria-label="Start search" data-id="search-button">Search</button>
                 </form>
@@ -36,6 +36,8 @@
         <div class="list-actions">
             <button id="loadMoreButton" class="primary-button" onclick="loadPokemon()"
                 aria-label="Load more Pokémon" data-id="load-more-button">Load more</button>
+                <button id="clearSearchButton" class="primary-button d-none" onclick="clearSearch()"
+                aria-label="Clear search and show all Pokémon">Show all Pokémon</button>
         </div>
     </main>
 

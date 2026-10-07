@@ -103,3 +103,7 @@ function getEvolutionEntryTemplate(entry) {
 function getTabLoadingTemplate() {
     return `<div class="tab-loading"><div class="spinner small"></div></div>`;
 }
+
+function getNotFoundTemplate() {
+    return `<p class="status-text" data-id="not-found">No match found.</p>`;
+}

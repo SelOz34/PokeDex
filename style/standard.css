@@ -47,3 +47,7 @@ button:disabled {
 .no-scroll {
     overflow: hidden;
 }
+
+.hidden {
+    visibility: hidden;
+}

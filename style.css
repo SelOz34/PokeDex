@@ -435,4 +435,8 @@
         grid-template-columns: 100px 28px 1fr;
         font-size: 13px;
     }
+
+    .search-hint {
+        text-align: center;
+    }
 }
