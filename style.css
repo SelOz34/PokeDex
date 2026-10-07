@@ -194,6 +194,11 @@
     gap: 10px;
 }
 
+.footer-brand img {
+    height: 40px;
+    width: auto;
+}
+
 .footer-brand-text {
     color: #fff;
     font-size: 18px;
