@@ -4,6 +4,7 @@ const PAGE_SIZE = 20;
 let pokemonCache = {};
 let loadedPokemon = [];
 let nextOffset = 0;
+let currentIndex = 0;
 let isLoading = false;
 
 async function init() {
@@ -79,4 +80,34 @@ function capitalize(text) {
 
 function showStatusMessage(html) {
     document.getElementById("statusMessage").innerHTML = html;
+}
+
+function openDialog(index) {
+    currentIndex = index;
+    renderDialog();
+    document.getElementById("pokemonDialog").showModal();
+    document.body.classList.add("no-scroll");
+}
+
+function renderDialog() {
+    const pokemon = loadedPokemon[currentIndex];
+    const dialog = document.getElementById("pokemonDialog");
+    dialog.innerHTML = getDialogTemplate(pokemon);
+    dialog.setAttribute("aria-label", `Details for ${capitalize(pokemon.name)}`);
+}
+
+function closeDialog() {
+    document.getElementById("pokemonDialog").close();
+}
+
+
+function handleDialogClose() {
+    document.body.classList.remove("no-scroll");
+}
+
+
+function handleDialogClick(event) {
+    if (event.target.id === "pokemonDialog") {
+        closeDialog();
+    }
 }
