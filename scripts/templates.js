@@ -20,7 +20,7 @@ function getErrorTemplate() {
     return `<p class="status-text">Something went wrong while loading data. Please try again.</p>`;
 }
 
-function getDialogTemplate(pokemon) {
+function getDialogTemplate(pokemon, index, total) {
     const name = capitalize(pokemon.name);
     return `
         <div class="dialog-card" data-id="overlay-pokemon-name">
@@ -31,6 +31,7 @@ function getDialogTemplate(pokemon) {
             <div class="type-list">${getTypeBadgesTemplate(pokemon.types)}</div>
             ${getTabNavigationTemplate()}
             <div id="tabContent" class="tab-content"></div>
+            ${getDialogNavigationTemplate(index, total)}
         </div>`;
 }
 
@@ -51,6 +52,15 @@ function getTabNavigationTemplate() {
             <button class="tab-button" data-tab="stats" onclick="showTab('stats')" aria-label="Show stats">stats</button>
             <button class="tab-button" data-tab="evolution" onclick="showTab('evolution')" aria-label="Show evolution chain">evo chain</button>
             </div>`;
+}
+
+function getDialogNavigationTemplate(index, total) {
+    return `
+        <div class="dialog-navigation">
+            <button class="arrow-button" onclick="showPreviousPokemon()" aria-label="Show previous Pokémon" data-id="prev-button">&#10094;</button>
+            <span class="dialog-counter">${index + 1} / ${total}</span>
+            <button class="arrow-button" onclick="showNextPokemon()" aria-label="Show next Pokémon" data-id="next-button">&#10095;</button>
+        </div>`;
 }
 
 function getMainTabTemplate(pokemon) {

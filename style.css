@@ -392,6 +392,31 @@
     border-width: 4px;
 }
 
+.dialog-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px 16px;
+}
+
+.arrow-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 18px;
+    background-color: var(--color-surface-light);
+}
+
+.arrow-button:hover {
+    background-color: var(--color-accent);
+    color: #0b1a22;
+}
+
+.dialog-counter {
+    color: #8aa3ae;
+    font-size: 14px;
+}
+
 @media (max-width: 600px) {
     .header-inner {
         justify-content: center;

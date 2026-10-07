@@ -109,7 +109,7 @@ function openDialog(index) {
 function renderDialog() {
     const pokemon = loadedPokemon[currentIndex];
     const dialog = document.getElementById("pokemonDialog");
-    dialog.innerHTML = getDialogTemplate(pokemon);
+    dialog.innerHTML = getDialogTemplate(pokemon, currentIndex, loadedPokemon.length);
     dialog.setAttribute("aria-label", `Details for ${capitalize(pokemon.name)}`);
     showTab(activeTab);
 }
@@ -205,4 +205,14 @@ function showTab(tabName) {
     if (tabName === "main") setTabContent(getMainTabTemplate(pokemon));
     if (tabName === "stats") setTabContent(getStatsTabTemplate(pokemon.stats));
     if (tabName === "evolution") showEvolutionTab(pokemon);
+}
+
+function showNextPokemon() {
+    currentIndex = (currentIndex + 1) % loadedPokemon.length;
+    renderDialog();
+}
+
+function showPreviousPokemon() {
+    currentIndex = (currentIndex - 1 + loadedPokemon.length) % loadedPokemon.length;
+    renderDialog();
 }
