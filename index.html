@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokodéx</title>
+    <title>Pokédex</title>
     <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
     <link rel="stylesheet" href="./style/standard.css">
     <link rel="stylesheet" href="./style/assets.css">
@@ -15,28 +15,28 @@
 
 <body onload="init()">
     <header class="header">
-          <div class="header-inner">
-                <a class="logo" href="./index.html" aria-label="Pokédex home">
+        <div class="header-inner">
+            <a class="logo" href="./index.html" aria-label="Pokédex home">
                 <img src="./assets/icons/favicon.svg" alt="" width="36" height="36">
                 <h1>Pokédex</h1>
-                </a>
-                <form class="search-form" onsubmit="searchPokemon(event)" role="search">
-                    <input id="searchInput" type="search" placeholder="Search Pokémon..." autocomplete="off"
+            </a>
+            <form class="search-form" onsubmit="searchPokemon(event)" role="search">
+                <input id="searchInput" type="search" placeholder="Search Pokémon..." autocomplete="off"
                     oninput="handleSearchInput()" aria-label="Search Pokémon by name" data-id="search-input">
-                    <button id="searchButton" type="submit" class="search-button" disabled
-                        aria-label="Start search" data-id="search-button">Search</button>
-                </form>
-            </div>
-        <p id="searchHint" class="search-hint">Enter at least 3 letters to search.</p>  
+                <button id="searchButton" type="submit" class="search-button" disabled aria-label="Start search"
+                    data-id="search-button">Search</button>
+            </form>
+        </div>
+        <p id="searchHint" class="search-hint">Enter at least 3 letters to search.</p>
     </header>
 
     <main class="content" data-id="content">
         <div id="statusMessage" class="status-message"></div>
         <ul id="pokemonList" class="pokemon-list"></ul>
         <div class="list-actions">
-            <button id="loadMoreButton" class="primary-button" onclick="loadPokemon()"
-                aria-label="Load more Pokémon" data-id="load-more-button">Load more</button>
-                <button id="clearSearchButton" class="primary-button d-none" onclick="clearSearch()"
+            <button id="loadMoreButton" class="primary-button" onclick="loadPokemon()" aria-label="Load more Pokémon"
+                data-id="load-more-button">Load more</button>
+            <button id="clearSearchButton" class="primary-button d-none" onclick="clearSearch()"
                 aria-label="Clear search and show all Pokémon">Show all Pokémon</button>
         </div>
     </main>
@@ -53,6 +53,7 @@
     <dialog id="pokemonDialog" class="pokemon-dialog" data-id="dialog" aria-label="Pokémon details"
         onclick="handleDialogClick(event)" onclose="handleDialogClose()">
     </dialog>
-    
+
 </body>
+
 </html>
